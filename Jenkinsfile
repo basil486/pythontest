@@ -6,15 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Check Python Version') {
-            steps {
-                sh 'python --version'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
-                sh 'pip install -r requirements.txt'
+                sh 'pip install --user -r requirements.txt'
             }
         }
 
@@ -24,11 +18,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            echo 'Build finished. Docker agent will be removed automatically.'
-        }
-    }
 }
-
